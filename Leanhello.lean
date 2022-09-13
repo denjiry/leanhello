@@ -1,13 +1,15 @@
 def hello := "world"
 
-axiom A : Type
-axiom Blue : A -> Prop
-def claim: Prop := ∀ (x: A), Blue x
+axiom A : Prop
+def claim: Prop := ∀ (x: A), A
 #check claim
 
 def ja (_s : String) : Prop :=
-  True
+  claim
 
 #check ja
 
 def claim2 := ja "hello"
+
+theorem test : ja "あああ" := by
+  intro a; exact a
