@@ -18,4 +18,22 @@ def lb (japanese : String) : Prop :=
   claim
 
 theorem t2 : lb "あああああ" := by
-  intro a;
+  intro a;exact a
+
+def ko := Lean.Quote
+
+unsafe
+def u :Prop := claim
+
+def h: IO Prop := do
+  IO.print "aaaaa"
+  pure claim
+
+unsafe
+def hu : Prop :=
+  match unsafeIO h with
+  | Except.ok p => p
+  | Except.error _ => True
+
+theorem k: hu := by
+  
